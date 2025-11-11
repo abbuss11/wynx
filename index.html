@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYNX - Think Sharp. Build Smarter.</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'orange': {
+                            500: '#FF6A00',
+                            600: '#E66000',
+                            700: '#CC5500',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #FF6A00;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .parallax {
+            transition: transform 0.3s ease-out;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 106, 0, 0.2);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6A00 0%, #FFA500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .sticky-nav {
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-nav.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(255, 106, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .process-line {
+            position: relative;
+        }
+
+        .process-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #FF6A00, transparent);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav fixed top-0 w-full z-50 px-8 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold">
+                <span class="text-white">W</span><span class="text-orange-500">YNX</span>
+            </div>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="hover:text-orange-500 transition">Accueil</a></li>
+                <li><a href="#about" class="hover:text-orange-500 transition">À propos</a></li>
+                <li><a href="#services" class="hover:text-orange-500 transition">Services</a></li>
+                <li><a href="#process" class="hover:text-orange-500 transition">Process</a></li>
+                <li><a href="#portfolio" class="hover:text-orange-500 transition">Portfolio</a></li>
+                <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
+            </ul>
+            <button class="bg-orange-500 px-6 py-2 rounded-full hover:bg-orange-600 transition transform hover:scale-105">
+                Démarrer un projet
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-20 w-72 h-72 bg-orange-500 rounded-full filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4" data-aos="fade-up">
+            <h1 class="text-6xl md:text-8xl font-bold mb-6">
+                Dare to see <span class="gradient-text">Further</span>.<br>
+                Dare <span class="gradient-text">WYNX</span>.
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 mb-8 max-w-3xl mx-auto">
+                Nous créons des expériences digitales exceptionnelles qui transforment votre vision en réalité. Du concept à la réalisation, nous donnons vie à vos idées les plus audacieuses.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition transform hover:scale-105">
+                    Découvrir nos services
+                </button>
+                <button class="border-2 border-orange-500 px-8 py-4 rounded-full text-lg font-semibold hover:bg-orange-500 transition">
+                    Voir nos projets
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-8 bg-zinc-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number gradient-text">150+</div>
+                    <p class="text-gray-400 mt-2">Projets réalisés</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number gradient-text">98%</div>
+                    <p class="text-gray-400 mt-2">Clients satisfaits</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number gradient-text">50+</div>
+                    <p class="text-gray-400 mt-2">Experts créatifs</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number gradient-text">8+</div>
+                    <p class="text-gray-400 mt-2">Années d'expérience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <h2 class="text-5xl font-bold mb-6">
+                        Qui sommes-<span class="gradient-text">nous</span> ?
+                    </h2>
+                    <p class="text-xl text-gray-400 mb-6">
+                        WYNX est une agence digitale passionnée par l'innovation et l'excellence. Nous combinons créativité, technologie et stratégie pour créer des solutions digitales qui marquent les esprits.
+                    </p>
+                    <p class="text-lg text-gray-400 mb-6">
+                        Notre équipe multidisciplinaire rassemble des designers, développeurs, stratèges et créatifs qui partagent une vision commune : transformer vos idées en expériences digitales inoubliables.
+                    </p>
+                    <p class="text-lg text-gray-400">
+                        Nous ne créons pas simplement des sites web ou des applications. Nous construisons des écosystèmes digitaux complets qui propulsent votre marque vers de nouveaux sommets.
+                    </p>
+                </div>
+                <div data-aos="fade-left" class="relative">
+                    <div class="bg-gradient-to-br from-orange-500 to-orange-700 rounded-3xl p-12 transform rotate-3 hover:rotate-0 transition">
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="text-4xl">🎯</div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Mission</h3>
+                                    <p class="text-sm">Innover sans limites</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-4xl">💡</div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Vision</h3>
+                                    <p class="text-sm">Leader du digital</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="text-4xl">⚡</div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Valeurs</h3>
+                                    <p class="text-sm">Excellence & créativité</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-8 bg-zinc-950">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Nos <span class="gradient-text">Services</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Des solutions digitales complètes pour propulser votre entreprise vers le succès
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl mb-4">💻</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">Développement Web</h3>
+                    <p class="text-gray-400 mb-4">Sites web modernes, performants et responsive avec les dernières technologies.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Sites vitrine & corporate</li>
+                        <li>• E-commerce & marketplaces</li>
+                        <li>• Applications web complexes</li>
+                        <li>• Progressive Web Apps (PWA)</li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl mb-4">📱</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">Applications Mobile</h3>
+                    <p class="text-gray-400 mb-4">Apps iOS et Android natives et cross-platform pour tous vos besoins.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Apps natives iOS/Android</li>
+                        <li>• React Native & Flutter</li>
+                        <li>• Apps e-commerce mobile</li>
+                        <li>• Maintenance & updates</li>
+                    </ul>
+                </div>
+                
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl mb-4">🎨</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-4">Interfaces intuitives et expériences utilisateur optimales et engageantes.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Design d'interface moderne</li>
+                        <li>• Prototypage interactif</li>
+                        <li>• Tests utilisateurs</li>
+                        <li>• Design system complet</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">Branding & Identité</h3>
+                    <p class="text-gray-400 mb-4">Identités visuelles fortes et mémorables pour votre marque.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Logo & charte graphique</li>
+                        <li>• Guide de style complet</li>
+                        <li>• Supports print & digital</li>
+                        <li>• Stratégie de marque</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">Marketing Digital</h3>
+                    <p class="text-gray-400 mb-4">Stratégies digitales pour booster votre visibilité et vos conversions.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• SEO & référencement</li>
+                        <li>• Campagnes ads (Google, Meta)</li>
+                        <li>• Content marketing</li>
+                        <li>• Analytics & reporting</li>
+                    </ul>
+                </div>
+
+                <div class="card-hover bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-5xl mb-4">⚙️</div>
+                    <h3 class="text-2xl font-bold mb-4 text-orange-500">Solutions Cloud</h3>
+                    <p class="text-gray-400 mb-4">Infrastructure cloud robuste et scalable pour votre croissance.</p>
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>• Migration vers le cloud</li>
+                        <li>• Architecture microservices</li>
+                        <li>• DevOps & CI/CD</li>
+                        <li>• Sécurité & monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Notre <span class="gradient-text">Processus</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Une méthodologie éprouvée en 5 étapes pour garantir le succès de votre projet
+            </p>
+
+            <div class="grid md:grid-cols-5 gap-8 relative">
+                <div class="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500 via-orange-500 to-transparent hidden md:block"></div>
+                
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        🔍
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Découverte</h3>
+                    <p class="text-gray-400 text-sm">Analyse de vos besoins et objectifs</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        📋
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Stratégie</h3>
+                    <p class="text-gray-400 text-sm">Élaboration d'un plan d'action détaillé</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        ✨
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Design</h3>
+                    <p class="text-gray-400 text-sm">Création de maquettes et prototypes</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        🔧
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Développement</h3>
+                    <p class="text-gray-400 text-sm">Code propre et performant</p>
+                </div>
+
+                <div class="relative z-10 text-center" data-aos="fade-up" data-aos-delay="500">
+                    <div class="bg-orange-500 w-20 h-20 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                        🚀
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Lancement</h3>
+                    <p class="text-gray-400 text-sm">Déploiement et suivi continu</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-8 bg-zinc-950">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Notre <span class="gradient-text">Portfolio</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Découvrez nos réalisations les plus remarquables et les défis que nous avons relevés
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-gradient-to-br from-orange-500 to-orange-700 h-full flex items-center justify-center">
+                        <span class="text-6xl">🚀</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">TechFlow Platform</h3>
+                        <p class="text-gray-300 text-center mb-4">Plateforme SaaS innovante pour la gestion de projets tech</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">React</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Node.js</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-gradient-to-br from-orange-600 to-red-600 h-full flex items-center justify-center">
+                        <span class="text-6xl">🛍️</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">LuxeStore</h3>
+                        <p class="text-gray-300 text-center mb-4">E-commerce premium pour marques de luxe</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Shopify</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Vue.js</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="bg-gradient-to-br from-orange-400 to-yellow-500 h-full flex items-center justify-center">
+                        <span class="text-6xl">📊</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">DataViz Pro</h3>
+                        <p class="text-gray-300 text-center mb-4">Dashboard analytics avancé pour grandes entreprises</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">D3.js</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="bg-gradient-to-br from-purple-500 to-pink-600 h-full flex items-center justify-center">
+                        <span class="text-6xl">🎵</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">MusicStream</h3>
+                        <p class="text-gray-300 text-center mb-4">Application de streaming musical nouvelle génération</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">React Native</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Firebase</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">GraphQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-gradient-to-br from-blue-500 to-cyan-600 h-full flex items-center justify-center">
+                        <span class="text-6xl">🏥</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">HealthCare Connect</h3>
+                        <p class="text-gray-300 text-center mb-4">Plateforme de télémédecine sécurisée</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Angular</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">WebRTC</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Azure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl cursor-pointer h-96" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="bg-gradient-to-br from-green-500 to-teal-600 h-full flex items-center justify-center">
+                        <span class="text-6xl">🌱</span>
+                    </div>
+                    <div class="absolute inset-0 bg-black bg-opacity-90 opacity-0 group-hover:opacity-100 transition flex items-center justify-center flex-col p-8">
+                        <h3 class="text-2xl font-bold mb-2">EcoTrack</h3>
+                        <p class="text-gray-300 text-center mb-4">App de suivi d'empreinte carbone personnelle</p>
+                        <div class="flex gap-2 flex-wrap justify-center">
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">Flutter</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">ML Kit</span>
+                            <span class="bg-orange-500 text-xs px-3 py-1 rounded-full">GCP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Ce que disent nos <span class="gradient-text">clients</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                La satisfaction de nos clients est notre plus grande récompense
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"WYNX a transformé notre vision en une plateforme incroyable. Leur expertise technique et leur créativité sont exceptionnelles. Un vrai partenaire de confiance !"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl mr-4">👨</div>
+                        <div>
+                            <h4 class="font-bold">Thomas Martin</h4>
+                            <p class="text-sm text-gray-500">CEO, TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"Le professionnalisme et la réactivité de l'équipe WYNX sont remarquables. Ils ont livré notre projet en avance avec une qualité irréprochable."</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl mr-4">👩</div>
+                        <div>
+                            <h4 class="font-bold">Sophie Dubois</h4>
+                            <p class="text-sm text-gray-500">Directrice Marketing, LuxeStore</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="text-orange-500 text-2xl mr-2">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <p class="text-gray-300 mb-6">"Une agence qui comprend vraiment nos besoins. Le design est magnifique et l'application fonctionne à la perfection. Bravo à toute l'équipe !"</p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-xl mr-4">👨</div>
+                        <div>
+                            <h4 class="font-bold">Marc Laurent</h4>
+                            <p class="text-sm text-gray-500">Fondateur, MusicStream</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="py-20 px-8 bg-zinc-950">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Technologies & <span class="gradient-text">Outils</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Nous maîtrisons les technologies les plus avancées pour créer des solutions performantes
+            </p>
+
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">⚛️</div>
+                        <p class="text-sm text-gray-400">React</p>
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="150">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">📱</div>
+                        <p class="text-sm text-gray-400">React Native</p>
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">🟢</div>
+                        <p class="text-sm text-gray-400">Node.js</p>
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="250">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">🐍</div>
+                        <p class="text-sm text-gray-400">Python</p>
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">☁️</div>
+                        <p class="text-sm text-gray-400">AWS</p>
+                    </div>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="350">
+                    <div class="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 hover:border-orange-500 transition">
+                        <div class="text-4xl mb-2">🎨</div>
+                        <p class="text-sm text-gray-400">Figma</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mb-6" data-aos="fade-up">
+                Discutons de votre <span class="gradient-text">projet</span>
+            </h2>
+            <p class="text-xl text-gray-400 text-center mb-16" data-aos="fade-up" data-aos-delay="100">
+                Vous avez un projet en tête ? Nous serions ravis d'en discuter avec vous et de vous accompagner dans sa réalisation.
+            </p>
+            
+            <form class="space-y-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-400">Nom complet</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-400">Email</label>
+                        <input type="email" placeholder="john@exemple.com" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-400">Téléphone</label>
+                        <input type="tel" placeholder="+33 6 12 34 56 78" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-gray-400">Type de projet</label>
+                        <select class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition">
+                            <option>Développement Web</option>
+                            <option>Application Mobile</option>
+                            <option>UI/UX Design</option>
+                            <option>Branding</option>
+                            <option>Marketing Digital</option>
+                            <option>Autre</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-400">Budget estimé</label>
+                    <select class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition">
+                        <option>Moins de 10 000€</option>
+                        <option>10 000€ - 25 000€</option>
+                        <option>25 000€ - 50 000€</option>
+                        <option>50 000€ - 100 000€</option>
+                        <option>Plus de 100 000€</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2 text-gray-400">Parlez-nous de votre projet</label>
+                    <textarea placeholder="Décrivez votre projet, vos objectifs et vos attentes..." rows="6" class="w-full bg-zinc-900 border border-zinc-800 rounded-lg px-6 py-4 focus:border-orange-500 focus:outline-none transition"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-orange-500 py-4 rounded-lg font-semibold hover:bg-orange-600 transition transform hover:scale-105">
+                    Envoyer le message
+                </button>
+            </form>
+
+            <div class="mt-16 grid md:grid-cols-3 gap-8 text-center">
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl mb-4">📧</div>
+                    <h3 class="font-bold mb-2">Email</h3>
+                    <p class="text-gray-400">contact@wynx.agency</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl mb-4">📞</div>
+                    <h3 class="font-bold mb-2">Téléphone</h3>
+                    <p class="text-gray-400">+33 1 23 45 67 89</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl mb-4">📍</div>
+                    <h3 class="font-bold mb-2">Adresse</h3>
+                    <p class="text-gray-400">75 Avenue des Champs-Élysées<br>75008 Paris, France</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-12 px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-3xl font-bold mb-4">
+                        <span class="text-white">W</span><span class="text-orange-500">YNX</span>
+                    </h3>
+                    <p class="text-gray-400 mb-6">Think Sharp. Build Smarter.</p>
+                    <p class="text-gray-500 text-sm">Nous transformons vos idées en expériences digitales exceptionnelles. Ensemble, créons quelque chose d'extraordinaire.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-orange-500">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-orange-500 transition">Développement Web</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Applications Mobile</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">UI/UX Design</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Branding</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Marketing Digital</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-orange-500">Entreprise</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-orange-500 transition">À propos</a></li>
+                        <li><a href="#portfolio" class="hover:text-orange-500 transition">Portfolio</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Carrières</a></li>
+                        <li><a href="#" class="hover:text-orange-500 transition">Blog</a></li>
+                        <li><a href="#contact" class="hover:text-orange-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-orange-500">Suivez-nous</h4>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-orange-500 transition">
+                            <span class="text-xl">𝕏</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-orange-500 transition">
+                            <span class="text-xl">in</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-orange-500 transition">
+                            <span class="text-xl">fb</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-zinc-900 rounded-full flex items-center justify-center hover:bg-orange-500 transition">
+                            <span class="text-xl">ig</span>
+                        </a>
+                    </div>
+                    <p class="text-gray-500 text-xs">Inscrivez-vous à notre newsletter</p>
+                    <div class="mt-2 flex">
+                        <input type="email" placeholder="Email" class="bg-zinc-900 border border-zinc-800 rounded-l-lg px-4 py-2 text-sm focus:outline-none flex-1">
+                        <button class="bg-orange-500 px-4 py-2 rounded-r-lg hover:bg-orange-600 transition">→</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-zinc-900 text-sm text-gray-500">
+                <p>© 2025 WYNX Agency. Tous droits réservés.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-orange-500 transition">Mentions légales</a>
+                    <a href="#" class="hover:text-orange-500 transition">Politique de confidentialité</a>
+                    <a href="#" class="hover:text-orange-500 transition">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Wait for AOS library to load
+        window.addEventListener('load', () => {
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100
+                });
+            }
+        });
+
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Sticky nav on scroll
+        const nav = document.querySelector('.sticky-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const parallaxElements = document.querySelectorAll('.parallax');
+            parallaxElements.forEach(el => {
+                const speed = el.dataset.speed || 0.05;
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+        });
+    </script>
+</body>
+</html>
+                
