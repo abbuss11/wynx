@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WYNX - Agence Digitale Futuriste</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --black: #000000;
+            --orange: #FF6A00;
+            --white: #FFFFFF;
+            --gray: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(26,26,26,0.9) 100%);
+        }
+
+        .orange-gradient {
+            background: linear-gradient(90deg, #FF6A00, #FF8C42);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #FF6A00, #FF8C42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, -15px); }
+            100% { transform: translate(0, 0px); }
+        }
+
+        .pulse-orange {
+            animation: pulse-orange 2s infinite;
+        }
+
+        @keyframes pulse-orange {
+            0% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 106, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 106, 0, 0); }
+        }
+
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .loading-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #FF6A00, #FF8C42);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center">
+        <div class="text-5xl font-bold mb-4">WYN<span class="text-orange-500">X</span></div>
+        <div class="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+            <div class="loading-bar h-full"></div>
+        </div>
+        <p class="mt-4 text-gray-400">Chargement de l'expérience...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full py-6 px-4 md:px-12 flex justify-between items-center z-40 transition-all duration-300 bg-black bg-opacity-80 backdrop-blur-lg">
+        <a href="#" class="text-2xl font-bold">WYN<span class="text-orange-500">X</span></a>
+        
+        <div class="hidden md:flex space-x-8">
+            <a href="#home" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                Accueil
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#about" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                À propos
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#services" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                Services
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#portfolio" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                Portfolio
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#process" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                Processus
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contact" class="text-white hover:text-orange-500 transition-colors duration-300 relative group">
+                Contact
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </div>
+        
+        <button class="md:hidden text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden gradient-bg">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full orange-gradient blur-3xl opacity-30"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full orange-gradient blur-3xl opacity-20"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-12 text-center z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6" data-aos="fade-up">
+                Think <span class="text-gradient">Sharp.</span><br>
+                Build <span class="text-gradient">Smarter.</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+                Nous créons des expériences digitales innovantes qui transforment votre vision en réalité tangible et mesurable.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6" data-aos="fade-up" data-aos-delay="400">
+                <a href="#contact" class="px-8 py-4 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition-all duration-300 transform hover:-translate-y-1 pulse-orange">
+                    Démarrer un projet
+                </a>
+                <a href="#portfolio" class="px-8 py-4 border border-orange-500 text-orange-500 font-bold rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300 transform hover:-translate-y-1">
+                    Voir nos réalisations
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-12">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6">Qui sommes-<span class="text-orange-500">nous</span> ?</h2>
+                    <p class="text-gray-300 mb-6">
+                        WYNX est une agence digitale innovante spécialisée dans la création d'expériences digitales 
+                        percutantes. Notre équipe d'experts allie créativité, technologie et stratégie pour transformer 
+                        vos idées en solutions digitales performantes.
+                    </p>
+                    <p class="text-gray-300 mb-8">
+                        Fondée en 2020, nous avons déjà accompagné plus de 50 entreprises dans leur transformation 
+                        digitale, avec un taux de satisfaction client de 98%.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-500">50+</div>
+                            <div class="text-gray-400">Projets réalisés</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-500">98%</div>
+                            <div class="text-gray-400">Clients satisfaits</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-500">15+</div>
+                            <div class="text-gray-400">Pays desservis</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-orange-500">3</div>
+                            <div class="text-gray-400">Prix d'excellence</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-gradient-to-br from-orange-500 to-orange-700 rounded-2xl p-1 glow floating">
+                        <div class="bg-gray-800 rounded-2xl p-6 h-full">
+                            <h3 class="text-2xl font-bold mb-4">Notre philosophie</h3>
+                            <p class="text-gray-300 mb-4">
+                                Chez WYNX, nous croyons que chaque projet digital doit allier beauté esthétique, 
+                                fonctionnalité optimale et performance technique.
+                            </p>
+                            <p class="text-gray-300">
+                                Notre approche centrée sur l'utilisateur nous permet de créer des solutions qui 
+                                non seulement impressionnent, mais qui convertissent et engagent.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-black">
+        <div class="container mx-auto px-4 md:px-12">
+            <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">Nos <span class="text-orange-500">Services</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+                Nous offrons une gamme complète de services digitaux pour propulser votre présence en ligne
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-900 rounded-2xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Développement Web</h3>
+                    <p class="text-gray-400 mb-4">
+                        Sites web performants, applications web complexes et solutions e-commerce sur mesure.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Sites vitrines & corporate
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            E-commerce & marketplaces
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Applications web complexes
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-900 rounded-2xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Applications Mobiles</h3>
+                    <p class="text-gray-400 mb-4">
+                        Applications natives et cross-platform conçues pour offrir une expérience utilisateur exceptionnelle.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Applications iOS & Android
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Applications cross-platform
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Applications PWA
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-900 rounded-2xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">UI/UX Design</h3>
+                    <p class="text-gray-400 mb-4">
+                        Interfaces intuitives et expériences utilisateur mémorables qui augmentent l'engagement et la conversion.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Design d'interface moderne
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Expérience utilisateur optimisée
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Tests utilisateurs & itérations
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gray-900 rounded-2xl p-6 transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Branding & Identité</h3>
+                    <p class="text-gray-400 mb-4">
+                        Identités visuelles percutantes et stratégies de marque qui renforcent votre présence et crédibilité.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Identité visuelle complète
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Stratégie de marque
+                        </li>
+                        <li class="flex items-center">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                            Guidelines & chartes graphiques
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-12">
+            <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">Nos <span class="text-orange-500">Réalisations</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+                Découvrez une sélection de nos projets les plus marquants
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-black rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="h-48 bg-gradient-to-r from-orange-500 to-orange-700 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-4 py-2 bg-white text-black font-bold rounded-full">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nexus Finance</h3>
+                        <p class="text-gray-400 mb-4">Plateforme financière innovante avec tableau de bord personnalisé</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-black rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-r from-purple-500 to-pink-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-4 py-2 bg-white text-black font-bold rounded-full">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">UrbanFit App</h3>
+                        <p class="text-gray-400 mb-4">Application de fitness avec suivi personnalisé et communauté</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">Flutter</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-black rounded-2xl overflow-hidden transition-all duration-300 hover:transform hover:-translate-y-2 hover:glow" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="px-4 py-2 bg-white text-black font-bold rounded-full">Voir le projet</a>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Artisan Coffee</h3>
+                        <p class="text-gray-400 mb-4">Site e-commerce et identité visuelle pour torréfacteur artisanal</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">Shopify</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">UI/UX</span>
+                            <span class="px-3 py-1 bg-gray-800 text-orange-500 rounded-full text-sm">Branding</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12" data-aos="fade-up">
+                <a href="#" class="px-8 py-3 border border-orange-500 text-orange-500 font-bold rounded-full hover:bg-orange-500 hover:text-white transition-all duration-300">
+                    Voir tous les projets
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-black">
+        <div class="container mx-auto px-4 md:px-12">
+            <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">Notre <span class="text-orange-500">Processus</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+                Une méthodologie éprouvée pour garantir le succès de votre projet
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center relative">
+                <!-- Connecting Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gray-800 -translate-y-1/2 z-0"></div>
+                
+                <!-- Step 1 -->
+                <div class="bg-gray-900 rounded-2xl p-6 text-center w-full md:w-56 relative z-10 mb-8 md:mb-0" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Découverte</h3>
+                    <p class="text-gray-400">Analyse de vos besoins et objectifs pour définir la stratégie</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-gray-900 rounded-2xl p-6 text-center w-full md:w-56 relative z-10 mb-8 md:mb-0" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Conception</h3>
+                    <p class="text-gray-400">Création des maquettes et prototypes pour valider l'expérience</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-gray-900 rounded-2xl p-6 text-center w-full md:w-56 relative z-10 mb-8 md:mb-0" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Développement</h3>
+                    <p class="text-gray-400">Implémentation technique avec les meilleures pratiques</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="bg-gray-900 rounded-2xl p-6 text-center w-full md:w-56 relative z-10" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 rounded-full orange-gradient flex items-center justify-center mx-auto mb-4">
+                        <span class="text-white font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Livraison</h3>
+                    <p class="text-gray-400">Tests, déploiement et formation pour une transition fluide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-12">
+            <h2 class="text-4xl font-bold text-center mb-4" data-aos="fade-up">Ils nous font <span class="text-orange-500">confiance</span></h2>
+            <p class="text-gray-400 text-center max-w-2xl mx-auto mb-12" data-aos="fade-up" data-aos-delay="200">
+                Découvrez les retours d'expérience de nos clients satisfaits
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-black rounded-2xl p-6" data-aos="fade-up" data-aos-delay="0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full orange-gradient flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">SL</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Leclerc</h4>
+                            <p class="text-gray-400 text-sm">Directrice Marketing, Nexus Finance</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "WYNX a transformé notre présence digitale. Leur approche stratégique et leur expertise technique ont dépassé nos attentes."
+                    </p>
+                    <div class="flex text-orange-500 mt-4">
+                        ★★★★★
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-black rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full orange-gradient flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">MD</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Marc Dubois</h4>
+                            <p class="text-gray-400 text-sm">Fondateur, UrbanFit</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "L'application développée par WYNX a été un véritable succès. L'expérience utilisateur est exceptionnelle et l'engagement a augmenté de 150%."
+                    </p>
+                    <div class="flex text-orange-500 mt-4">
+                        ★★★★★
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-black rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full orange-gradient flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">EM</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Élodie Martin</h4>
+                            <p class="text-gray-400 text-sm">CEO, Artisan Coffee</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">
+                        "Le branding et le site e-commerce créés par WYNX ont complètement transformé notre business. Les ventes en ligne ont triplé en 3 mois."
+                    </p>
+                    <div class="flex text-orange-500 mt-4">
+                        ★★★★★
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-4 md:px-12">
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2" data-aos="fade-right">
+                    <h2 class="text-4xl font-bold mb-6">Discutons de votre <span class="text-orange-500">projet</span></h2>
+                    <p class="text-gray-400 mb-8">
+                        Prêt à transformer votre vision en réalité ? Contactez-nous pour une consultation gratuite 
+                        et découvrez comment nous pouvons vous aider à atteindre vos objectifs digitaux.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Téléphone</h3>
+                                <p class="text-gray-400">+33 1 23 45 67 89</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Email</h3>
+                                <p class="text-gray-400">contact@wynx.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Adresse</h3>
+                                <p class="text-gray-400">123 Avenue de la Tech, 75000 Paris</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2" data-aos="fade-left" data-aos-delay="200">
+                    <form class="bg-gray-900 rounded-2xl p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Nom complet</label>
+                                <input type="text" id="name" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Adresse email</label>
+                                <input type="email" id="email" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-300 mb-2">Sujet</label>
+                            <input type="text" id="subject" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-gray-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-orange-500" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:-translate-y-1">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-4 md:px-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold">WYN<span class="text-orange-500">X</span></a>
+                    <p class="text-gray-400 mt-2">Agence digitale innovante</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10 5.523 0 10-4.477 10-10 0-5.523-4.477-10-10-10zm0 16.667c-3.682 0-6.667-2.985-6.667-6.667S8.318 5.333 12 5.333 18.667 8.318 18.667 12 15.682 18.667 12 18.667zm5-10.834a1.166 1.166 0 110-2.332 1.166 1.166 0 010 2.332zM12 8.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                        </svg>
+                    </a>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2023 WYNX. Tous droits réservés.</p>
+                    <p class="text-gray-500 text-sm mt-1">Agence digitale spécialisée</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialisation AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingBar = document.querySelector('.loading-bar');
+            
+            // Simulate loading progress
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+                loadingBar.style.width = `${progress}%`;
+            }, 200);
+        });
+
+        // Sticky Navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('py-4');
+                nav.classList.add('py-6');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.querySelector('form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+            contactForm.reset();
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate elements on scroll with GSAP
+        gsap.utils.toArray('[data-aos]').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
