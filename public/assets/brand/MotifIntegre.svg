@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" fill="none">
+  <defs>
+    <pattern id="motifWhiteRepeat" width="180" height="180" patternUnits="userSpaceOnUse">
+      <g stroke="#FFFFFF" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+        <!-- Central Hexagon -->
+        <polygon points="90,72 105.58,81 105.58,99 90,108 74.42,99 74.42,81" />
+        <polygon points="90,77 101,83.5 101,96.5 90,103 79,96.5 79,83.5" opacity="0.6" />
+
+        <!-- 6 Radial WYNX Crest Elements -->
+        <!-- North -->
+        <g transform="translate(90, 48)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- North-East -->
+        <g transform="translate(127, 69) rotate(60)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- South-East -->
+        <g transform="translate(127, 111) rotate(120)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- South -->
+        <g transform="translate(90, 132) rotate(180)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- South-West -->
+        <g transform="translate(53, 111) rotate(240)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- North-West -->
+        <g transform="translate(53, 69) rotate(300)">
+          <path d="M 0 -20 L 18 -7 L 13 -3 L 0 -13 L -13 -3 L -18 -7 Z" />
+          <path d="M -16 -7 C -20 -14 -24 -20 -18 -25 C -14 -22 -12 -16 -12 -11" />
+          <path d="M 16 -7 C 20 -14 24 -20 18 -25 C 14 -22 12 -16 12 -11" />
+          <path d="M -14 -2 L 0 7 L 14 -2 L 14 12 C 14 18 7 21 0 21 C -7 21 -14 18 -14 12 Z" />
+        </g>
+
+        <!-- Seamless Interlocking Corners -->
+        <g transform="translate(0, 0)">
+          <polygon points="0,-9 7.8,-4.5 7.8,4.5 0,9 -7.8,4.5 -7.8,-4.5" />
+          <path d="M 0 11 L 11 18 L 7 22 L 0 16 L -7 22 L -11 18 Z" />
+        </g>
+        <g transform="translate(180, 0)">
+          <polygon points="0,-9 7.8,-4.5 7.8,4.5 0,9 -7.8,4.5 -7.8,-4.5" />
+          <path d="M 0 11 L 11 18 L 7 22 L 0 16 L -7 22 L -11 18 Z" />
+        </g>
+        <g transform="translate(0, 180)">
+          <polygon points="0,-9 7.8,-4.5 7.8,4.5 0,9 -7.8,4.5 -7.8,-4.5" />
+          <path d="M 0 -11 L 11 -18 L 7 -22 L 0 -16 L -7 -22 L -11 -18 Z" />
+        </g>
+        <g transform="translate(180, 180)">
+          <polygon points="0,-9 7.8,-4.5 7.8,4.5 0,9 -7.8,4.5 -7.8,-4.5" />
+          <path d="M 0 -11 L 11 -18 L 7 -22 L 0 -16 L -7 -22 L -11 -18 Z" />
+        </g>
+      </g>
+    </pattern>
+  </defs>
+
+  <rect width="100%" height="100%" fill="url(#motifWhiteRepeat)" />
+</svg>

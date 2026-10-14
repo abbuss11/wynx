@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 140" fill="none">
+  <defs>
+    <linearGradient id="wynxOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FFA600" />
+      <stop offset="100%" stopColor="#FF7700" />
+    </linearGradient>
+  </defs>
+
+  <!-- Left Emblem Mark -->
+  <g transform="translate(10, 10) scale(0.48)">
+    <!-- Left Leaf -->
+    <path d="M 16 68 C 12 36 28 14 36 6 C 42 28 50 44 44 58 C 36 50 24 56 16 68 Z" fill="url(#wynxOrangeGrad)" />
+    <path d="M 28 20 C 32 36 34 50 36 60" stroke="#090A0D" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Right Leaf -->
+    <path d="M 224 68 C 228 36 212 14 204 6 C 198 28 190 44 196 58 C 204 50 216 56 224 68 Z" fill="url(#wynxOrangeGrad)" />
+    <path d="M 212 20 C 208 36 206 50 204 60" stroke="#090A0D" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Chevron Roof -->
+    <path d="M 120 18 L 228 78 L 194 98 L 120 54 L 46 98 L 12 78 Z" fill="url(#wynxOrangeGrad)" />
+
+    <!-- Solid Shield W -->
+    <path d="M 38 106 L 120 156 L 202 106 L 202 180 C 202 216 164 238 120 238 C 76 238 38 216 38 180 Z" fill="#ECEFF4" />
+    <path d="M 80 148 L 120 188 L 160 148 L 140 136 L 120 154 L 100 136 Z" fill="#090A0D" />
+  </g>
+
+  <!-- WYNX Bold Wordmark -->
+  <g transform="translate(140, 20) scale(0.85)">
+    <!-- W -->
+    <path d="M 0 10 L 28 110 L 62 110 L 88 38 L 114 110 L 148 110 L 176 10 L 138 10 L 124 74 L 98 10 L 78 10 L 52 74 L 38 10 Z" fill="#FFFFFF" />
+    <!-- Y -->
+    <path d="M 188 10 L 222 64 L 222 110 L 254 110 L 254 64 L 288 10 L 252 10 L 238 42 L 224 10 Z" fill="#FFFFFF" />
+    <!-- N -->
+    <path d="M 302 10 L 302 110 L 332 110 L 368 44 L 368 110 L 398 110 L 398 10 L 368 10 L 332 76 L 332 10 Z" fill="#FFFFFF" />
+    <!-- X -->
+    <path d="M 406 10 L 436 58 L 406 110 L 438 110 L 452 82 L 466 110 L 498 110 L 468 58 L 498 10 L 466 10 L 452 38 L 438 10 Z" fill="#FFFFFF" />
+  </g>
+</svg>
