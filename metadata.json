@@ -1,0 +1,6 @@
+{
+  "name": "WYNX – Agence Digitale & Studio d'Innovation",
+  "description": "Refonte officielle de l'agence WYNX : ingénierie web moderne, applications mobiles, UI/UX design sur-mesure, portfolio interactif et blog SEO pour startups et entreprises ambitieuses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

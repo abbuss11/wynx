@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" fill="none">
+  <defs>
+    <linearGradient id="traceTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FFD000" />
+      <stop offset="100%" stopColor="#FFA200" />
+    </linearGradient>
+    <linearGradient id="traceMidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FF9900" />
+      <stop offset="100%" stopColor="#FF6600" />
+    </linearGradient>
+    <linearGradient id="traceBotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FF6600" />
+      <stop offset="100%" stopColor="#E53900" />
+    </linearGradient>
+  </defs>
+
+  <!-- Top Chevron -->
+  <path d="M 100 12 L 194 72 L 158 98 L 100 58 L 42 98 L 6 72 Z" fill="url(#traceTopGrad)" />
+
+  <!-- Middle Chevron -->
+  <path d="M 100 78 L 194 138 L 158 164 L 100 124 L 42 164 L 6 138 Z" fill="url(#traceMidGrad)" />
+
+  <!-- Bottom Chevron -->
+  <path d="M 100 144 L 194 204 L 158 230 L 100 190 L 42 230 L 6 204 Z" fill="url(#traceBotGrad)" />
+</svg>
